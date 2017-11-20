@@ -1,0 +1,88 @@
+//** File name for all font files.
+@font-path: "../../assets/fonts/";
+
+@font-path-light: "light/roboto_light_300";
+@font-path-regular: "regular/roboto_regular_400";
+@font-path-medium: "medium/roboto_medium_500";
+
+// TODO: font refs need to be standardized
+@font-path-bold: "googleapis/Roboto-Bold_latin";
+@font-path-italic: "googleapis/Roboto-MediumItalic_latin";
+
+@font-path-lato: "googleapis/Lato_latin";
+
+@font-face {
+  font-family: 'RobotoLightFont';
+  src: url('@{font-path}/@{font-path-light}.woff2') format('woff2'),
+  url('@{font-path}/@{font-path-light}.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoRegularFont';
+  src: url('@{font-path}/@{font-path-regular}.woff2') format('woff2'),
+  url('@{font-path}/@{font-path-regular}.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoMediumFont';
+  src: url('@{font-path}/@{font-path-medium}.woff2') format('woff2'),
+  url('@{font-path}/@{font-path-medium}.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* latin */
+@font-face {
+  font-family: 'RobotoBoldFont';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('@{font-path}/@{font-path-bold}_e.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin */
+@font-face {
+  font-family: 'RobotoItalicFont';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url('@{font-path}/@{font-path-italic}.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url('@{font-path}/@{font-path-lato}.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url('@{font-path}/@{font-path-lato}.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-family-phx-light: RobotoLightFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-phx-regular: RobotoRegularFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-phx-medium: RobotoMediumFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// DEPRECATED
+@font-family-phx-condensed: RobotoCondensedFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// NOT YET IMPLEMENTED
+@font-family-phx-italic: RobotoItalicFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-phx-bold: RobotoBoldFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+//==> temp fix *********************
+//@font-family-phx-bold: RobotoMediumFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+//BOOTSTRAP FONTS
+@font-family-phx-glyphicon: 'Glyphicons Halflings';

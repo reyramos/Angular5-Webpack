@@ -1,0 +1,65 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ag-grid/13.2.0/styles/ag-grid.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ag-grid/13.2.0/styles/theme-fresh.css");
+
+.ag-root {
+  font-size: 13px;
+  border-right: 1px solid #ddd !important;
+  border-left: 1px solid #ddd !important;
+}
+
+.ag-header {
+  background-color: #f5f5f5;
+  .ag-header-cell {
+    background-color: white;
+    padding-top: 3px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.ag-cell {
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+
+  &.has-text-centered {
+    text-align: center;
+  }
+
+  &.is-checkbox {
+    padding-top: 10px;
+  }
+
+  &.is-fa {
+    padding-top: 4px;
+
+  }
+}
+
+.ag-row {
+  &.ag-row-odd {
+    background-color: white;
+  }
+
+  &.ag-row-even {
+    background-color: #f6f6f6;
+  }
+
+}
+
+.ag-row.ag-row-hover {
+  background-color: #FF879F;
+}
+
+.ag-row.ag-row-hover {
+  cursor: pointer;
+}
+
+.ag-row {
+  &.ag-row-selected {
+    background-color: #ff3860 !important;
+    color: white;
+    &.ag-row-hover {
+      //background-color: orange !important;
+    }
+
+  }
+}
