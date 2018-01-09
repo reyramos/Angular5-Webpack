@@ -38,7 +38,7 @@ const AngularCompilerPlugin = ngtools.AngularCompilerPlugin;
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = (process.env.BUILD_AOT || helpers.hasNpmFlag('aot')) ? true : false;
 const METADATA = {
-  title: 'Angular5+WebPack',
+  title: 'freshtxt',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: HMR,
@@ -74,7 +74,6 @@ module.exports = function (options) {
 
       'polyfills': './src/polyfills.browser.ts',
       'main': AOT ? './src/main.browser.aot.ts' : './src/main.browser.ts',
-
     },
     /*
      * Options affecting the resolving of modules.
@@ -96,10 +95,10 @@ module.exports = function (options) {
       ],
       alias: {
         app: 'src',
-        jquery: 'jquery/dist/jquery.min.js',
+        // jquery: 'jquery/dist/jquery.min.js',
         // Rx: helpers.root('node_modules', 'rxjs', 'Rx.js'),
-        'jquery-ui': helpers.root('node_modules', 'jquery-ui', 'ui'),
-        moment: 'moment/moment',
+        // 'jquery-ui': helpers.root('node_modules', 'jquery-ui', 'ui'),
+        // moment: 'moment/moment',
       }
     },
     /*
@@ -111,7 +110,8 @@ module.exports = function (options) {
 
       rules: [
         {
-          test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+          test: !isProd ? /(?:\.ngfactory\.js|\.ngstyle\.js)$/ : /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+          // test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
           use: [
             {
               loader: '@ngtools/webpack',
@@ -177,12 +177,47 @@ module.exports = function (options) {
           use: 'file-loader'
         },
 
-        /* File loader for supporting fonts, for example, in CSS files.
-        */
+        // /* File loader for supporting fonts, for example, in CSS files.
+        // */
         {
           test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
-          use: 'file-loader'
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                publicPath: "http://localhost:3000/", // Development Server
+              }
+            }
+          ]
         },
+
+        // // the url-loader uses DataUrls.
+        // // the file-loader emits files.
+        // {
+        //   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        //   use: [
+        //     {
+        //       loader: "url-loader",
+        //       options: {
+        //         limit: 10000,
+        //         mimetype: 'application/font-woff',
+        //       }
+        //     }
+        //   ]
+        // },
+        //
+        // {
+        //   test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        //   use: [
+        //     {
+        //       loader: "file-loader",
+        //       options: {
+        //         publicPath: "http://localhost:3000/", // Development Server
+        //       }
+        //     }
+        //   ]
+        // },
+
         {test: /\.worker/, use: "webworker-loader"}
 
       ],
@@ -361,7 +396,7 @@ module.exports = function (options) {
          * The state can not change after initializing the plugin.
          * @default true
          */
-        disabled: !AOT,
+        AOT: true,
         tsConfigPath: helpers.root('tsconfig.json'),
         mainPath: AOT ? './src/main.browser.aot.ts' : './src/main.browser.ts'
       }),
@@ -375,10 +410,10 @@ module.exports = function (options) {
       new InlineManifestWebpackPlugin(),
 
       new ProvidePlugin({
-        jQuery: 'jquery',
-        $: ['jquery', 'jQueryUI'],
-        jquery: 'jquery',
-        'window.jQuery': 'jquery'
+        // jQuery: 'jquery',
+        // $: ['jquery', 'jQueryUI'],
+        // jquery: 'jquery',
+        // 'window.jQuery': 'jquery'
       })
 
     ],

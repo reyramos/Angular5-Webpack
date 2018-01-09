@@ -6,7 +6,7 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "arrow-parens" : false,
+    "arrow-parens": false,
     "callable-types": false,
     "class-name": true,
     "comment-format": [
@@ -23,6 +23,7 @@
       false,
       "ignore-same-line"
     ],
+    "space-before-function-paren": false,
     "eofline": false,
     "forin": false,
     "import-blacklist": [

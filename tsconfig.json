@@ -23,6 +23,9 @@
     "paths": {
       "@angular/*": [
         "node_modules/@angular/*"
+      ],
+      "@phoenix/*": [
+        "custom_modules/@phoenix/*"
       ]
     },
     "types": [

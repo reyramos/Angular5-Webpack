@@ -16,6 +16,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 // const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const git = require('git-rev-sync');
 
 /**
  * Webpack Constants
@@ -26,6 +27,7 @@ const PORT = process.env.PORT || 3000;
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = (process.env.BUILD_AOT || helpers.hasNpmFlag('aot')) ? true : false;
 const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
+  // REVISION: git.short(),
   host: HOST,
   port: PORT,
   ENV: ENV,
@@ -60,6 +62,7 @@ module.exports = function (options) {
      */
     output: {
 
+
       /**
        * The output directory as absolute path (required).
        *
@@ -91,6 +94,7 @@ module.exports = function (options) {
       chunkFilename: '[id].chunk.js',
 
       library: 'ac_[name]',
+
       libraryTarget: 'var',
     },
     stats: "none",
@@ -133,7 +137,8 @@ module.exports = function (options) {
             },
             {
               loader: 'angular2-template-loader'
-            }
+            },
+
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
 
@@ -154,16 +159,40 @@ module.exports = function (options) {
           include: [helpers.root('src', 'styles')]
         },
         /*
-		 * sass loader support for *.scss files (styles directory only)
-		 * Loads external sass styles into the DOM, supports HMR
-		 *
-		 */
+			   * sass loader support for *.scss files (styles directory only)
+			   * Loads external sass styles into the DOM, supports HMR
+			   *
+			   */
         {
           test: /\.scss$/,
           use: ['style-loader', 'css-loader', 'sass-loader'],
           include: [helpers.root('src', 'styles')]
         },
+        /*
+         * File loader for supporting images, for example, in CSS files.
+         */
+        {
+          test: /\.(jpg|png|gif)$/,
+          use: 'file-loader'
+        },
 
+        // /* File loader for supporting fonts, for example, in CSS files.
+        // */
+        // {
+        //   test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
+        //   use: ['file-loader']
+        // },
+        // {
+        //   test: /\.(woff|ttf|eot|svg)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
+        //   use: [
+        //     {
+        //       loader: 'url-loader',
+        //       options: {
+        //         limit: 100000
+        //       }
+        //     }
+        //   ],
+        // },
       ]
 
     },
@@ -184,6 +213,8 @@ module.exports = function (options) {
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
         'BUILD_ON': JSON.stringify(METADATA.ENV),
+        // 'REVISION': JSON.stringify(METADATA.REVISION),
+        'USE_MOCKDATA': useMockData,
         'process.env.ENV': JSON.stringify(METADATA.ENV),
         'process.env.NODE_ENV': JSON.stringify(METADATA.NODE_ENV),
         'process.env.HMR': JSON.stringify(METADATA.HMR)

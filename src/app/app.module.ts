@@ -19,7 +19,7 @@ import { NoContentComponent } from '../no-content/no-content.component';
 })
 export class AppModule {
 
-  constructor () {
+  constructor() {
 
   }
 }

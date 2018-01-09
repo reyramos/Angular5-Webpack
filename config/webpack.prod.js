@@ -29,6 +29,7 @@ const OptimizeJsPlugin = require('optimize-js-plugin');
 const CompressionPlugin = require("compression-webpack-plugin")
 const ngcWebpack = require('ngc-webpack');
 
+const git = require('git-rev-sync');
 
 /**
  * Webpack Constants
@@ -40,6 +41,7 @@ const AOT = (process.env.BUILD_AOT || helpers.hasNpmFlag('aot')) ? true : false;
 const METADATA = webpackMerge(commonConfig({
   env: ENV
 }).metadata, {
+  // REVISION: git.short(),
   host: HOST,
   port: PORT,
   ENV: ENV,
@@ -205,6 +207,8 @@ module.exports = function (env) {
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
         'BUILD_ON': JSON.stringify(new Date().toLocaleString()),
+        // 'REVISION': JSON.stringify(METADATA.REVISION),
+        'USE_MOCKDATA': false,
         'process.env.ENV': JSON.stringify(METADATA.ENV),
         'process.env.NODE_ENV': JSON.stringify(METADATA.ENV),
         'process.env.HMR': METADATA.HMR

@@ -9,13 +9,24 @@
 
 const express = require('express');
 const path = require('path');
+const proxy = require('http-proxy-middleware');
 
-const compression = require('compression');
-const port = 3000;
-const app = express();
+
+var helpers = require('./config/helpers');
+var compression = require('compression');
+var port = 3000;
+var app = express();
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
+
+app.use('/api/**', proxy({
+  target: 'http://localhost:9998',
+  secure: false,
+  changeOrigin: true,
+  onProxyReq: function (proxyReq, req, res) {
+  }
+}));
 
 
 app.get('*', function (req, res) {

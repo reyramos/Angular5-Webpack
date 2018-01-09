@@ -84,6 +84,7 @@ interface String {
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare let ENV: string;
+declare let USE_MOCKDATA: boolean;
 declare let BUILD_ON: string;
 declare let REVISION: string;
 declare let PROXY: boolean;
