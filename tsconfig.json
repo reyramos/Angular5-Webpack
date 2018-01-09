@@ -32,7 +32,6 @@
       "node",
       "jasmine",
       "webpack",
-      "source-map",
       "uglify-js"
     ]
   },
